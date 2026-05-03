@@ -1,14 +1,15 @@
 package com.unievt.dto.evenement;
 
+import java.time.LocalDateTime;
+
 import com.unievt.enums.CategorieEnum;
 import com.unievt.enums.StatutEvenementEnum;
 import com.unievt.enums.TypeEvenementEnum;
 import com.unievt.enums.VisibiliteEnum;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
