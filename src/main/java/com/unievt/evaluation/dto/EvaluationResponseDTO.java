@@ -18,4 +18,7 @@ public class EvaluationResponseDTO {
     private Long etudiantId;
     private String etudiantNom;
     private String etudiantPrenom;
+    private Long reservationId;
+    private Long evenementId;
+    private String evenementTitre;
 }

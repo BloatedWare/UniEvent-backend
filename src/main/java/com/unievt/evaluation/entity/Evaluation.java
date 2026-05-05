@@ -1,5 +1,6 @@
 package com.unievt.evaluation.entity;
 
+import com.unievt.reservation.entity.Reservation;
 import com.unievt.user.entity.Utilisateur;
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,4 +35,8 @@ public class Evaluation {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_etudiant", nullable = false)
     private Utilisateur etudiant;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_reservation", nullable = false)
+    private Reservation reservation;
 }

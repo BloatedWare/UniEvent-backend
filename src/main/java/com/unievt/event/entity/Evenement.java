@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.unievt.club.entity.Club;
 import com.unievt.inscription.entity.Inscription;
+import com.unievt.notification.entity.Notification;
+import com.unievt.reservation.entity.Reservation;
 import com.unievt.enums.CategorieEnum;
 import com.unievt.enums.StatutEvenementEnum;
 import com.unievt.enums.TypeEvenementEnum;
@@ -88,9 +90,19 @@ public class Evenement {
     private Utilisateur organisateur;
 
     @OneToMany(mappedBy = "evenement", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<Inscription> inscriptions = new ArrayList<>();
 
     @OneToMany(mappedBy = "evenement", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<EvenementIntervenant> intervenants = new ArrayList<>();
+
+    @OneToMany(mappedBy = "evenement", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<Reservation> reservations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "evenement", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<Notification> notifications = new ArrayList<>();
 
 }

@@ -14,6 +14,7 @@ public class ReservationDTO {
     private LocalDateTime dateDebut;
     private LocalDateTime dateFin;
     private String commentaire;
+    private Long evenementId;
     private Long salleId;
     private Long demandeurId;
 }

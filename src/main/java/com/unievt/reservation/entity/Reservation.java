@@ -1,6 +1,7 @@
 package com.unievt.reservation.entity;
 
 import com.unievt.enums.StatutReservationEnum;
+import com.unievt.event.entity.Evenement;
 import com.unievt.salle.entity.Salle;
 import com.unievt.user.entity.Utilisateur;
 import jakarta.persistence.*;
@@ -31,6 +32,7 @@ public class Reservation {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @Builder.Default
     private StatutReservationEnum statut = StatutReservationEnum.EN_ATTENTE;
 
     @Column(columnDefinition = "TEXT")
@@ -43,6 +45,10 @@ public class Reservation {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_salle", nullable = false)
     private Salle salle;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_evenement", nullable = false)
+    private Evenement evenement;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_demandeur", nullable = false)

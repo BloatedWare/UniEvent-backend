@@ -11,4 +11,5 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
 
     List<Notification> findByDestinataireId(Long destinataireId);
     List<Notification> findByDestinataireIdAndLuFalse(Long destinataireId);
+    List<Notification> findByEvenementId(Long evenementId);
 }

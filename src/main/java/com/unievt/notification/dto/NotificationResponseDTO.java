@@ -21,4 +21,6 @@ public class NotificationResponseDTO {
     private Long destinataireId;
     private String destinataireNom;
     private String destinatairePrenom;
+    private Long evenementId;
+    private String evenementTitre;
 }

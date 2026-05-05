@@ -10,4 +10,6 @@ import java.util.List;
 public interface EvaluationRepository extends JpaRepository<Evaluation, Long> {
 
     List<Evaluation> findByEtudiantId(Long etudiantId);
+    List<Evaluation> findByReservationId(Long reservationId);
+    List<Evaluation> findByReservationEvenementId(Long evenementId);
 }

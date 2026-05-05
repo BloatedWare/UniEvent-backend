@@ -14,4 +14,5 @@ public class NotificationDTO {
     private String message;
     private TypeNotifEnum type;
     private Long destinataireId;
+    private Long evenementId;
 }

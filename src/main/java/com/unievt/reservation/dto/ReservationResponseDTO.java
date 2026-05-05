@@ -18,6 +18,8 @@ public class ReservationResponseDTO {
     private StatutReservationEnum statut;
     private String commentaire;
     private LocalDateTime dateCreation;
+    private Long evenementId;
+    private String evenementTitre;
     private Long salleId;
     private String salleNom;
     private Long demandeurId;

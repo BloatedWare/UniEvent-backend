@@ -12,4 +12,5 @@ public class EvaluationDTO {
     private Integer note; // 1 à 5
     private String commentaire;
     private Long etudiantId;
+    private Long reservationId;
 }

@@ -1,6 +1,7 @@
 package com.unievt.notification.entity;
 
 import com.unievt.enums.TypeNotifEnum;
+import com.unievt.event.entity.Evenement;
 import com.unievt.user.entity.Utilisateur;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,6 +34,7 @@ public class Notification {
     private TypeNotifEnum type;
 
     @Column(nullable = false)
+    @Builder.Default
     private Boolean lu = false;
 
     @CreationTimestamp
@@ -42,4 +44,8 @@ public class Notification {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_destinataire", nullable = false)
     private Utilisateur destinataire;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_evenement")
+    private Evenement evenement;
 }
