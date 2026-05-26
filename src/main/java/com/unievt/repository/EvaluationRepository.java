@@ -2,6 +2,7 @@ package com.unievt.repository;
 
 import com.unievt.entity.Evaluation;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,4 +13,7 @@ public interface EvaluationRepository extends JpaRepository<Evaluation, Long> {
     List<Evaluation> findByEtudiantId(Long etudiantId);
     List<Evaluation> findByReservationId(Long reservationId);
     List<Evaluation> findByReservationEvenementId(Long evenementId);
+
+    @Query("SELECT AVG(e.note) FROM Evaluation e")
+    Double averageNote();
 }

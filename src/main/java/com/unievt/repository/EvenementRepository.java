@@ -3,6 +3,7 @@ package com.unievt.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.unievt.entity.Evenement;
 import com.unievt.enums.CategorieEnum;
@@ -13,4 +14,10 @@ public interface EvenementRepository extends JpaRepository<Evenement, Long> {
     List<Evenement> findByClubId(Long clubId);
     List<Evenement> findByOrganisateurId(Long organisateurId);
     List<Evenement> findByCategorie(CategorieEnum categorie);
+
+    @Query("SELECT e.statut, COUNT(e) FROM Evenement e GROUP BY e.statut")
+    List<Object[]> countByStatut();
+
+    @Query("SELECT e.categorie, COUNT(e) FROM Evenement e GROUP BY e.categorie")
+    List<Object[]> countByCategorie();
 }
