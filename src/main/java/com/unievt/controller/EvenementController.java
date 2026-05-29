@@ -1,13 +1,9 @@
 package com.unievt.controller;
 
 import com.unievt.dto.EvenementCreateDTO;
-import com.unievt.dto.EvenementIntervenantResponseDTO;
 import com.unievt.dto.EvenementResponseDTO;
 import com.unievt.dto.EvenementUpdateDTO;
 import com.unievt.dto.InscriptionResponseDTO;
-import com.unievt.mapper.EvenementIntervenantMapper;
-import com.unievt.repository.EvenementIntervenantRepository;
-import com.unievt.repository.EvenementRepository;
 import com.unievt.service.InscriptionService;
 import com.unievt.service.EvenementService;
 import jakarta.validation.Valid;
@@ -15,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
 import java.util.List;
@@ -27,9 +22,6 @@ public class EvenementController {
 
     private final EvenementService evenementService;
     private final InscriptionService inscriptionService;
-    private final EvenementRepository evenementRepository;
-    private final EvenementIntervenantRepository evenementIntervenantRepository;
-    private final EvenementIntervenantMapper evenementIntervenantMapper;
 
     @PostMapping
     public ResponseEntity<EvenementResponseDTO> creer(@Valid @RequestBody EvenementCreateDTO dto) {
@@ -92,17 +84,10 @@ public class EvenementController {
         return ResponseEntity.ok(evenementService.archiver(id));
     }
 
-    @GetMapping("/{id}/intervenants")
-    public ResponseEntity<List<EvenementIntervenantResponseDTO>> listerIntervenants(@PathVariable Long id) {
-        if (!evenementRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Evenement introuvable: " + id);
-        }
-        List<EvenementIntervenantResponseDTO> intervenants = evenementIntervenantRepository.findByEvenementId(id)
-                .stream()
-                .map(evenementIntervenantMapper::toResponseDTO)
-                .toList();
-        return ResponseEntity.ok(intervenants);
-    }
+    // NOTE (Strike) : GET /evenements/{id}/intervenants est servi par IntervenantController
+    // (méthode listerParEvenement). On avait deux mappings identiques ici et là -> Spring
+    // refusait de démarrer (Ambiguous mapping). La route reste fonctionnelle, juste dans
+    // l'autre contrôleur ; elle renvoie List<IntervenantResponseDTO>.
 
     @GetMapping("/{evenementId}/inscriptions")
     public ResponseEntity<List<InscriptionResponseDTO>> listerInscriptions(@PathVariable Long evenementId) {
